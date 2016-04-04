@@ -1,9 +1,10 @@
 class MyException(TypeError):
-    def __init__(self, value):
+    def __init__(self, value, obj):
         super(MyException, self).__init__()
         self.value = value
+        self.obj = type(obj)
     def __str__(self):
-        return repr(self.value)
+        return repr(self.value) + repr(self.obj)
 
 
 def to_json(obj, raise_unknown=False):
@@ -14,32 +15,19 @@ def to_json(obj, raise_unknown=False):
         string += "{"
         for elem in obj:
             i += 1
-            if type(obj[elem]) == type({}) or type(elem) == type([])\
-                                      or type(elem) == type(()):
-                string += to_json(elem, raise_unknown)
-                string += ": " + to_json(obj[elem], raise_unknown)
-                if i != len(obj):
-                    string += ", "
-            else:
-                string += to_json(elem, raise_unknown)
-                string += ": " + to_json(obj[elem], raise_unknown)
-                if i != len(obj):
-                    string += ", "
+            string += to_json(elem, raise_unknown)
+            string += ": " + to_json(obj[elem], raise_unknown)
+            if i != len(obj):
+                string += ", "
         return string + "}"
 
     elif type(obj) == type([]) or type(obj) == type(()):
         string += "["
         for elem in obj:
             i += 1
-            if type(elem) == type([]) or type(elem) == type(())\
-                                      or type(elem) == type({}):
-                string += to_json(elem, raise_unknown)
-                if i != len(obj):
-                    string += ", "
-            else:
-                string += to_json(elem, raise_unknown)
-                if i != len(obj):
-                    string += ", "
+            string += to_json(elem, raise_unknown)
+            if i != len(obj):
+                string += ", "
         return string + "]"
 
     elif type(obj) == int:
@@ -69,9 +57,7 @@ def to_json(obj, raise_unknown=False):
 
     else:
         if raise_unknown == True:
-            type_obj = type(obj)
-            raise MyException("Attempt to convert an unknown type: "\
-                             + str(type_obj))
+            raise MyException("Attempt to convert an unknown type:", obj)
 
 """
 class A(object):
@@ -85,4 +71,8 @@ lst = [1, {"a": 1}, 5, "434", 'ewe', [{"fsd": "fd"}], [[1, 3, 'dsa'], ("d", "a")
 f = {"foo": 1, "dct": {"asd": 2}}
 a = {1: 4, "d": 3}
 d = {True: {False: None, 'bar': 2}, 'dict2': {'baz': 3, 'quux': 4}}
-print to_json(A, True)"""
+print to_json(d)
+print to_json(f)
+print to_json(a)
+print to_json(lst)
+print to_json(x, True)"""
