@@ -12,7 +12,6 @@ class MyMetaClass(type):
 class MyClass(object):
     __metaclass__ = MyMetaClass
 
-
 """
 x = MyClass()
 print x.a
