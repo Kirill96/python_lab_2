@@ -1,0 +1,10 @@
+Method: my_func
+args: (1, 2)
+kwargs: {'num3': 1}
+result: 4
+
+Method: my_func
+args: (10, 10)
+kwargs: {'num3': 10}
+result: 30
+

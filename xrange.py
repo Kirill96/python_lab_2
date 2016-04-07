@@ -27,6 +27,16 @@ class Myxrange(object):
         else:
             raise StopIteration()
 
+    def __getitem__(self, elem):
+        element = self.start + elem*self.step
+        if element >= self.stop:
+            raise IndexError("Myxrange object index out of range")
+        else:
+            return element
 
+"""
 for i in Myxrange(1, 10, 2):
     print i
+a = Myxrange(5)
+print a[1], a[5]
+"""
