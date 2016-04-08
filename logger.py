@@ -13,7 +13,7 @@ class Logger(object):
 
                 with open('logs_'+ name_class + '.txt', 'a') as file_w:
                     file_w.write(('Method: {0}\nargs: {1}\nkwargs: {2}\n'
-                                  'result: {3}\n\n').format(attr.__name__,\
+                                  'result: {3}\n\n').format(attr,\
                                   args, kwargs, result))
 
             return newfunc

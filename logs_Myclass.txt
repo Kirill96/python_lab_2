@@ -1,9 +1,9 @@
-Method: my_func
+Method: <bound method Myclass.my_func of <__main__.Myclass object at 0x7f7b27b321d0>>
 args: (1, 2)
 kwargs: {'num3': 1}
 result: 4
 
-Method: my_func
+Method: <bound method Myclass.my_func of <__main__.Myclass object at 0x7f7b27b321d0>>
 args: (10, 10)
 kwargs: {'num3': 10}
 result: 30
