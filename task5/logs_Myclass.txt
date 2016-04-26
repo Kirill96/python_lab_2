@@ -1,0 +1,5 @@
+Method: <bound method Myclass.my_func of <__main__.Myclass object at 0x7f81cb2e2d90>>
+args: (5, 5)
+kwargs: {'z': 10}
+result: 20
+
